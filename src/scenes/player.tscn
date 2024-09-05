@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://431m1eprlkyx"]
+
+[ext_resource type="Texture2D" uid="uid://bf5yrlkkysim3" path="res://assets/kenney_tiny-dungeon/Tilemap/tilemap_packed.png" id="1_6r50p"]
+[ext_resource type="Script" path="res://src/scripts/player.gd" id="1_8n1en"]
+[ext_resource type="PackedScene" uid="uid://dpo65llblvuk1" path="res://src/scenes/movement_component.tscn" id="3_nm1i8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q0jn2"]
+radius = 8.0
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_8n1en")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6r50p")
+region_enabled = true
+region_rect = Rect2(0, 128, 16, 16)
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_nm1i8")]
+entity = NodePath("..")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HideBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HideBox"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_q0jn2")
+
+[connection signal="finished_walking" from="MovementComponent" to="." method="_on_movement_component_finished_walking"]

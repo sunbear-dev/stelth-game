@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqu6r7oq6xopi"]
+
+[ext_resource type="Script" path="res://src/scripts/Guard.gd" id="1_jc1ya"]
+[ext_resource type="PackedScene" uid="uid://dpo65llblvuk1" path="res://src/scenes/movement_component.tscn" id="1_jva4s"]
+[ext_resource type="Texture2D" uid="uid://cm80koeuj8ne6" path="res://assets/kenney_tiny-dungeon/Tilemap/tilemap.png" id="2_ysrwj"]
+[ext_resource type="PackedScene" uid="uid://baqwa320l6yxn" path="res://src/scenes/vision_component.tscn" id="4_peojh"]
+
+[node name="Guard" type="Node2D" node_paths=PackedStringArray("vision")]
+script = ExtResource("1_jc1ya")
+vision = NodePath("VisionComponent")
+
+[node name="MovementComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("1_jva4s")]
+entity = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ysrwj")
+region_enabled = true
+region_rect = Rect2(16, 172, 16, 16)
+
+[node name="VisionComponent" parent="." instance=ExtResource("4_peojh")]
+
+[connection signal="finished_walking" from="MovementComponent" to="." method="_on_movement_component_finished_walking"]

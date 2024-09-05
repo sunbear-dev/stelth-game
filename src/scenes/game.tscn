@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://i8uijre0kqw1"]
+
+[ext_resource type="PackedScene" uid="uid://bcswn48x0ingn" path="res://src/scenes/level_manager.tscn" id="1_kq5dq"]
+[ext_resource type="PackedScene" uid="uid://m5pue1de01gl" path="res://src/scenes/tile_map.tscn" id="2_faauc"]
+[ext_resource type="PackedScene" uid="uid://431m1eprlkyx" path="res://src/scenes/player.tscn" id="3_246wk"]
+[ext_resource type="PackedScene" uid="uid://cjnbbocdosuiq" path="res://src/scenes/turn_manager.tscn" id="4_2yabi"]
+[ext_resource type="PackedScene" uid="uid://bqu6r7oq6xopi" path="res://src/scenes/guard.tscn" id="5_ag3f0"]
+
+[node name="Game" type="Node2D"]
+
+[node name="LevelManager" parent="." instance=ExtResource("1_kq5dq")]
+
+[node name="TileMap" parent="LevelManager" instance=ExtResource("2_faauc")]
+
+[node name="TurnManager" parent="LevelManager/TileMap" node_paths=PackedStringArray("tile_map", "player", "enemy_group") instance=ExtResource("4_2yabi")]
+tile_map = NodePath("..")
+player = NodePath("../Player")
+enemy_group = NodePath("../Enemies")
+
+[node name="Player" parent="LevelManager/TileMap" node_paths=PackedStringArray("tile_map") instance=ExtResource("3_246wk")]
+position = Vector2(8, -9)
+tile_map = NodePath("..")
+
+[node name="Enemies" type="Node2D" parent="LevelManager/TileMap"]
+
+[node name="Guard" parent="LevelManager/TileMap/Enemies" node_paths=PackedStringArray("tile_map") instance=ExtResource("5_ag3f0")]
+position = Vector2(17, 80)
+tile_map = NodePath("../..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 41.0
+scale = Vector2(3.99733, 4.00835)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 1.501
+offset_top = 32.9313
+offset_right = 76.501
+offset_bottom = 72.9313
+scale = Vector2(0.14382, 0.118732)
+
+[node name="EndTurnButton" type="Button" parent="CanvasLayer/Control/MarginContainer"]
+light_mask = 7
+visibility_layer = 7
+layout_mode = 2
+text = "End turn"
+
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/EndTurnButton" to="LevelManager/TileMap/TurnManager" method="_on_end_turn_button_pressed"]
