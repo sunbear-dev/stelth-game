@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bixkpalj6wq0"]
+
+[ext_resource type="Script" path="res://src/scripts/scene_switcher.gd" id="1_554q4"]
+[ext_resource type="PackedScene" uid="uid://i8uijre0kqw1" path="res://src/scenes/game.tscn" id="2_s08g4"]
+
+[node name="scene_switcher" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_554q4")
+
+[node name="Game" parent="." instance=ExtResource("2_s08g4")]

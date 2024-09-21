@@ -5,6 +5,7 @@ class_name Player
 var can_act = true
 @onready var movement_component = $MovementComponent
 var move_range = 5
+signal win
 
 
 func move(path):
@@ -13,6 +14,9 @@ func move(path):
 	can_act = false
 
 func finished_movement():
+	var tile = tile_map.get_cell_atlas_coords(0, tile_map.local_to_map(global_position))
+	if tile == Vector2i(0,5):
+		win.emit()
 	can_act = true
 
 
