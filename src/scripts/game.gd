@@ -1,11 +1,5 @@
 extends Node2D
-
+class_name Game
 @onready var level_manag = $LevelManager
+@export var scene_switcher : SceneSwitcher
 
-func _on_guard_player_spotted():
-	get_parent().level = level_manag.level
-	get_parent().game_over()
-	
-
-func _on_player_win():
-	get_parent().you_win()

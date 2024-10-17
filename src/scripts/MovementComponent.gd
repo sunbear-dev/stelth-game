@@ -5,8 +5,9 @@ var _walk_path : Array[Vector2i]
 var _is_moving = false
 signal finished_walking
 var direction : Vector2
+var path_line : Line2D
 
-func _process(delta):
+func _process(_delta):
 	if _walk_path.is_empty():
 		if _is_moving:
 			emit_signal("finished_walking")
@@ -29,8 +30,24 @@ func start_moving():
 
 func show_ava_tiles(available_tiles):
 	for x in available_tiles:
-		entity.tile_map.set_cell(1, x, 1, Vector2(0,4))
+		entity.tile_map.set_cell(1, x, 0, Vector2(0,4))
 
 func hide_ava_tiles(available_tiles):
 	for x in available_tiles:
 		entity.tile_map.set_cell(1, x, -1, Vector2(0,4))
+		
+func create_path_line():
+	path_line = Line2D.new()
+	path_line.position = Vector2(0,0)
+	path_line.default_color = Color("red")  
+	path_line.width = 5  	
+	update_path_line()
+	add_child(path_line)
+
+func update_path_line():
+	path_line.add_point(entity.to_local(entity.tile_map.snap_to_map(entity.position)))
+	for point in _walk_path:
+		path_line.add_point(entity.to_local(entity.tile_map.map_to_local(point)))
+
+func clear_path_lines():
+	path_line.clear_points()

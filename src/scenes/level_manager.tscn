@@ -1,3 +1,36 @@
-[gd_scene format=3 uid="uid://bcswn48x0ingn"]
+[gd_scene load_steps=3 format=3 uid="uid://bcswn48x0ingn"]
+
+[ext_resource type="Script" path="res://src/scripts/level_manager.gd" id="1_46hls"]
+[ext_resource type="PackedScene" uid="uid://cw4gr4h5u3hpv" path="res://src/levels/level1.tscn" id="2_qmyt5"]
 
 [node name="LevelManager" type="Node2D"]
+script = ExtResource("1_46hls")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 41.0
+scale = Vector2(3.99733, 4.00835)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 1.501
+offset_top = 32.9313
+offset_right = 76.501
+offset_bottom = 72.9313
+scale = Vector2(0.14382, 0.118732)
+
+[node name="EndTurnButton" type="Button" parent="CanvasLayer/Control/MarginContainer"]
+light_mask = 7
+visibility_layer = 7
+layout_mode = 2
+text = "End turn"
+
+[node name="Level" parent="." node_paths=PackedStringArray("level_manager") instance=ExtResource("2_qmyt5")]
+level_manager = NodePath("..")
+
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]

@@ -1,6 +1,6 @@
 extends TileMap
 
-var astar_grid: AStarGrid2D
+@onready var astar_grid: AStarGrid2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	astar_grid = AStarGrid2D.new()
@@ -30,20 +30,22 @@ func navigate(from_pos: Vector2, to_pos : Vector2) -> Array[Vector2i]:
 	var path = astar_grid.get_id_path(from_pos, to_pos)
 	return path.slice(1, path.size())
 
-func allowed_tiles(distance, from_pos : Vector2):
-	var allowed_paths = []
+func allowed_paths(distance, from_pos : Vector2):
+	var list_allowed_paths = []
 	var start_map_pos = self.local_to_map(from_pos)
-	var minX = start_map_pos.x-distance
-	var maxX = start_map_pos.x+distance
-	var minY = start_map_pos.y-distance
-	var maxY = start_map_pos.y + distance
+	var rect = astar_grid.get_region() #Tilemap area, the position is the origin position, the size the size of the area
+	# Calculate the minimum and maximum distance the entity can travel, and clamp it so it does not try to navigate to areas outside
+	var minX = clamp(start_map_pos.x-distance, rect.position.x, rect.position.x + rect.size.x)
+	var maxX = clamp(start_map_pos.x+distance, rect.position.x, rect.position.x + rect.size.x)
+	var minY = clamp(start_map_pos.y-distance, rect.position.y, rect.position.y + rect.size.y)
+	var maxY = clamp(start_map_pos.y + distance, rect.position.y, rect.position.y + rect.size.y)
 	for x in range(minX, maxX):
 		for y in range(minY, maxY):
 			var end_pos = Vector2i(x, y)
 			var path = navigate(start_map_pos, end_pos)
 			if path.size() < distance and !path.is_empty():
-				allowed_paths.append(end_pos)
-	return allowed_paths
+				list_allowed_paths.append(end_pos)
+	return list_allowed_paths
 
 func legal_move(allowed_tiles):
 	var clicked_tile = local_to_map(get_global_mouse_position())
@@ -51,3 +53,5 @@ func legal_move(allowed_tiles):
 	if  tile != -1:
 		return true
 	return false
+func snap_to_map(pos):
+	return map_to_local(local_to_map(pos))	

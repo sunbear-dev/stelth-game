@@ -5,10 +5,12 @@ class_name Player
 var can_act = true
 @onready var movement_component = $MovementComponent
 var move_range = 5
+var move_range_max = 5
 signal win
 
 
 func move(path):
+	move_range -= path.size()
 	movement_component.set_walk_path(path)
 	movement_component.start_moving()
 	can_act = false
