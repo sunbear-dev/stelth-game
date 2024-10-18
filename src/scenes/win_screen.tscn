@@ -17,6 +17,15 @@ offset_left = 44.0
 offset_top = 71.0
 offset_right = 105.0
 offset_bottom = 102.0
-text = "restart"
+text = "Next Level"
+
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 43.0
+offset_top = 108.0
+offset_right = 133.0
+offset_bottom = 139.0
+text = "Quit
+"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

@@ -30,11 +30,11 @@ func start_moving():
 
 func show_ava_tiles(available_tiles):
 	for x in available_tiles:
-		entity.tile_map.set_cell(1, x, 0, Vector2(0,4))
+		entity.tile_map.set_cell(1, x, 0, Vector2(2,5))
 
 func hide_ava_tiles(available_tiles):
 	for x in available_tiles:
-		entity.tile_map.set_cell(1, x, -1, Vector2(0,4))
+		entity.tile_map.set_cell(1, x, -1, Vector2(0,0))
 		
 func create_path_line():
 	path_line = Line2D.new()

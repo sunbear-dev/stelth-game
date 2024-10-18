@@ -42,7 +42,7 @@ func create_cone():
 	var shape = vision.draw_cone(self)
 	var poly = Polygon2D.new()
 	poly.set_polygon(PackedVector2Array(shape))
-	poly.color = Color("lightgray")
+	poly.color = Color("red")
 	poly.modulate.a = 0.5
 	add_child(poly)
 
