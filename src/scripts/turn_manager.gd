@@ -8,6 +8,7 @@ var enemies = []
 var _enemies_have_moved = false
 var _has_attacked : bool
 var player_turn: bool = true
+var paused : bool = false
 
 func _ready():
 	enemies = enemy_group.get_children()
@@ -15,7 +16,14 @@ func _ready():
 	for e in enemies:
 		e.set_next_path()
 
+func pause():
+	for e in enemies:
+		e.pause()
+	paused = true
+
 func _physics_process(_delta):
+	if paused:
+		return
 	if player_turn:
 		_player_turn()
 	else:

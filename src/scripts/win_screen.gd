@@ -1,9 +1,12 @@
 extends CanvasLayer
+var scene_switcher
 
+func _ready():
+	scene_switcher = get_parent()
 
 func _on_button_pressed():
-	get_parent().next_level()
+	scene_switcher.load_level()
 
 
 func _on_quit_button_pressed():
-	get_parent().main_menu()
+	scene_switcher.main_menu()

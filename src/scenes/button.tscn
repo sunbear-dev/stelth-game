@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d28eeyyrvhutp"]
+
+[ext_resource type="Texture2D" uid="uid://d3uodp40wdqku" path="res://assets/steel tilemap.png" id="1_0w5ei"]
+[ext_resource type="Script" path="res://src/scripts/button.gd" id="2_tsvoa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mwy3"]
+size = Vector2(16, 16)
+
+[node name="Button" type="Sprite2D"]
+texture = ExtResource("1_0w5ei")
+hframes = 5
+vframes = 6
+frame = 11
+script = ExtResource("2_tsvoa")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4mwy3")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

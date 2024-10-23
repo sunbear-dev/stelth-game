@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var turn_manager = $TileMap/TurnManager
 @export var level_manager : LevelManager
-
+		
 
 func _on_guard_player_spotted():
 	level_manager.level_fail()

@@ -6,8 +6,15 @@ var _is_moving = false
 signal finished_walking
 var direction : Vector2
 var path_line : Line2D
+var paused: bool
+
+
+func pause():
+	paused = true
 
 func _process(_delta):
+	if paused:
+		return
 	if _walk_path.is_empty():
 		if _is_moving:
 			emit_signal("finished_walking")

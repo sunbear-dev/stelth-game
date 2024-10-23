@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bixkpalj6wq0"]
+[gd_scene load_steps=4 format=3 uid="uid://bixkpalj6wq0"]
 
 [ext_resource type="Script" path="res://src/scripts/scene_switcher.gd" id="1_554q4"]
+[ext_resource type="PackedScene" uid="uid://bw7kfgwkmlneq" path="res://src/scenes/main_menu.tscn" id="2_2hesu"]
 [ext_resource type="PackedScene" uid="uid://bcswn48x0ingn" path="res://src/scenes/level_manager.tscn" id="2_cu274"]
 
 [node name="scene_switcher" type="Control"]
@@ -11,6 +12,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_554q4")
+
+[node name="Menu" parent="." instance=ExtResource("2_2hesu")]
 
 [node name="LevelManager" parent="." node_paths=PackedStringArray("scene_switcher") instance=ExtResource("2_cu274")]
 scene_switcher = NodePath("..")

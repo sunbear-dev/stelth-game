@@ -18,7 +18,7 @@ func move(path):
 func finished_movement():
 	var tile = tile_map.get_cell_atlas_coords(0, tile_map.local_to_map(global_position))
 	if tile == Vector2i(1,5):
-		win.emit()
+		win.emit()		
 	can_act = true
 
 

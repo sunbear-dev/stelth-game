@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bxu15lie5y4tr"]
+
+[node name="WinScreen" type="CanvasLayer"]
+
+[node name="SpottedQuote" type="Label" parent="."]
+offset_left = 13.0
+offset_top = 66.0
+offset_right = 171.0
+offset_bottom = 115.0
+text = "You've been spotted
+      Press any key"

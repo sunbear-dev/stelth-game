@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn8f3jmblyvjf"]
+
+[ext_resource type="Texture2D" uid="uid://d3uodp40wdqku" path="res://assets/steel tilemap.png" id="1_dtj8m"]
+[ext_resource type="Script" path="res://src/scripts/door.gd" id="2_67yys"]
+
+[node name="Door" type="Sprite2D"]
+texture = ExtResource("1_dtj8m")
+hframes = 5
+vframes = 6
+frame = 24
+region_rect = Rect2(64, 64, 16, 16)
+script = ExtResource("2_67yys")

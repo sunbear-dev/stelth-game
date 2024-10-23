@@ -1,9 +1,13 @@
 extends CanvasLayer
 
+var screen_switcher
+
+func _ready():
+	screen_switcher = get_parent()
 
 func _on_restart_button_pressed():
-	get_parent().retry()
+	screen_switcher.load_level()
 
 
 func _on_quit_button_pressed():
-	get_parent().main_menu()
+	screen_switcher.main_menu()

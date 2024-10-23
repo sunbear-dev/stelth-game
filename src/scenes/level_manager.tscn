@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcswn48x0ingn"]
+[gd_scene load_steps=2 format=3 uid="uid://bcswn48x0ingn"]
 
 [ext_resource type="Script" path="res://src/scripts/level_manager.gd" id="1_46hls"]
-[ext_resource type="PackedScene" uid="uid://cw4gr4h5u3hpv" path="res://src/levels/level1.tscn" id="2_qmyt5"]
 
 [node name="LevelManager" type="Node2D"]
 script = ExtResource("1_46hls")
-
-[node name="Level" parent="." node_paths=PackedStringArray("level_manager") instance=ExtResource("2_qmyt5")]
-level_manager = NodePath("..")

@@ -20,7 +20,11 @@ var facing_dict = {
 
 signal player_spotted
 
+func pause():
+	movement_component.pause()
+
 func _ready():
+	await tile_map.ready
 	vision.create_vision_cone(self)
 	cone = create_cone()
 	movement_component.create_path_line()

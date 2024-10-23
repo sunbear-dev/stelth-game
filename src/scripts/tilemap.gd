@@ -1,7 +1,8 @@
 extends TileMap
 
 @onready var astar_grid: AStarGrid2D
-# Called when the node enters the scene tree for the first time.
+var open_door_sprite = Vector2(0,5)
+
 func _ready():
 	astar_grid = AStarGrid2D.new()
 	astar_grid.region = self.get_used_rect()
@@ -55,3 +56,9 @@ func legal_move(allowed_tiles):
 	return false
 func snap_to_map(pos):
 	return map_to_local(local_to_map(pos))	
+
+
+func _on_door_door_opened(door):
+	var door_pos = self.local_to_map(door.position)
+	astar_grid.set_point_solid(door_pos, false)
+	
