@@ -1,4 +1,4 @@
-# stelth-game
+# Stealth-game
 This is a prototype of a game to test out a few basic mechanics:
 - Vision cones
 - Xcom style movement
